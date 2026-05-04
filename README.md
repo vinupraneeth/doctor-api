@@ -24,10 +24,10 @@ app/
 ├── core/           # Database connection  
 ├── models/         # SQLAlchemy models  
 ├── schemas/        # Pydantic schemas  
-├── routers/        # API endpoints  
+├── routers/        # API endpoints (thin layer)  
 ├── services/       # Business logic  
+├── repositories/   # Database access layer  
 ├── main.py         # Entry point  
-```
 
 ---
 
@@ -38,6 +38,18 @@ app/
 * Get doctor by ID
 * Update doctor
 * Delete doctor
+
+---
+
+## Architecture
+
+This project follows a layered architecture:
+
+Router → Service → Repository → Database
+
+- Router: handles requests, validation, and dependency injection  
+- Service: contains business logic  
+- Repository: handles all database operations  
 
 ---
 
