@@ -28,6 +28,7 @@ app/
 ├── services/       # Business logic  
 ├── repositories/   # Database access layer  
 ├── main.py         # Entry point  
+```
 
 ---
 
