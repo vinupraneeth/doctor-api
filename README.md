@@ -16,7 +16,7 @@ It supports full CRUD operations with proper validation and clean architecture.
 ---
 
 ## Project Structure
-
+```
 app/
 ├── core/           # Database connection  
 ├── models/         # SQLAlchemy models  
@@ -24,7 +24,7 @@ app/
 ├── routers/        # API endpoints  
 ├── services/       # Business logic  
 ├── main.py         # Entry point  
-
+```
 ---
 
 ## Features
@@ -48,45 +48,47 @@ app/
 ## Setup Instructions
 
 1. Clone the repository:
-
-git clone https://github.com/vinupraneeth/doctor-api.git
-cd doctor_api
-
+```
+   git clone https://github.com/vinupraneeth/doctor-api.git
+   cd doctor_api
+```
 
 2. Create virtual environment:
-
-python -m venv venv
-venv\Scripts\activate
-
+```
+   python -m venv venv
+   venv\Scripts\activate
+```
 
 3. Install dependencies:
-
-pip install -r requirements.txt
-
+```
+   pip install -r requirements.txt
+```
 
 4. Configure database:
 
 Create `.env` file and add:
-   DB_USER=root
-   DB_PASSWORD=your_password
-   DB_HOST=localhost
-   DB_NAME=doctor_db
-
+```
+DB_USER=root
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_NAME=doctor_db
+```
 ---
+
 
 ## Run the Application
-
+```
 python -m uvicorn app.main:app --reload
-
-
+```
 ---
+
 
 ## API Documentation (Swagger)
-
+```
 http://127.0.0.1:8000/docs
-
-
+```
 ---
+
 
 ## API Endpoints
 
@@ -111,3 +113,4 @@ Fields:
 - experience
 - is_active
 - created_at
+
