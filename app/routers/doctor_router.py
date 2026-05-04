@@ -5,7 +5,6 @@ from typing import List
 from app.core.database import SessionLocal
 from app.schemas.doctor_schema import DoctorResponse, DoctorCreate
 from app.services import doctor_service
-from app.models.doctors import Doctor
 
 router = APIRouter(prefix="/doctors", tags=["Doctors"])
 
@@ -29,8 +28,7 @@ def get_doctors(db: Session = Depends(get_db)):
 @router.post("/", response_model=DoctorResponse)
 def create_doctor(doctor: DoctorCreate, db: Session = Depends(get_db)):
 
-    # Email uniqueness check
-    existing = db.query(Doctor).filter(Doctor.email == doctor.email).first()
+    existing = doctor_service.get_doctor_by_email(db, doctor.email)
     if existing:
         raise HTTPException(status_code=400, detail="Email already exists")
 
@@ -56,13 +54,8 @@ def update_doctor(doctor_id: int, updated: DoctorCreate, db: Session = Depends(g
     if not doctor:
         raise HTTPException(status_code=404, detail="Doctor not found")
 
-    # Prevent duplicate email
-    existing = db.query(Doctor).filter(
-        Doctor.email == updated.email,
-        Doctor.id != doctor_id
-    ).first()
-
-    if existing:
+    existing = doctor_service.get_doctor_by_email(db, updated.email)
+    if existing and existing.id != doctor_id:
         raise HTTPException(status_code=400, detail="Email already exists")
 
     return doctor_service.update_doctor(db, doctor, updated)

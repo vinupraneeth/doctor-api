@@ -1,32 +1,27 @@
+from app.repositories import doctor_repository
 from sqlalchemy.orm import Session
-from app.models.doctors import Doctor
+from app.repositories import doctor_repository
 
 
 def get_all_doctors(db: Session):
-    return db.query(Doctor).all()
+    return doctor_repository.get_all_doctors(db)
 
 
 def get_doctor_by_id(db: Session, doctor_id: int):
-    return db.query(Doctor).filter(Doctor.id == doctor_id).first()
+    return doctor_repository.get_doctor_by_id(db, doctor_id)
 
 
 def create_doctor(db: Session, data):
-    new_doctor = Doctor(**data.dict())
-    db.add(new_doctor)
-    db.commit()
-    db.refresh(new_doctor)
-    return new_doctor
+    return doctor_repository.create_doctor(db, data)
 
 
 def update_doctor(db: Session, doctor, data):
-    for key, value in data.dict().items():
-        setattr(doctor, key, value)
-
-    db.commit()
-    db.refresh(doctor)
-    return doctor
+    return doctor_repository.update_doctor(db, doctor, data)
 
 
 def delete_doctor(db: Session, doctor):
-    db.delete(doctor)
-    db.commit()
+    return doctor_repository.delete_doctor(db, doctor)
+
+
+def get_doctor_by_email(db: Session, email: str):
+    return doctor_repository.get_doctor_by_email(db, email)
