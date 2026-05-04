@@ -84,11 +84,14 @@ venv\Scripts\activate
 
 ### 3. Install dependencies
 
+
 ```bash
 pip install -r requirements.txt
 ```
+This will install all required Python packages such as FastAPI, Uvicorn, SQLAlchemy, and Pydantic.
 
 ### 4. Configure database
+
 
 Create a `.env` file and add:
 
