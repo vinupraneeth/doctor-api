@@ -101,7 +101,11 @@ venv\Scripts\activate
 ```bash
 pip install -r requirements.txt
 ```
-This will install all required Python packages such as FastAPI, Uvicorn, SQLAlchemy, and Pydantic.
+This will install all required Python packages such as 
+    * FastAPI
+    * Uvicorn
+    * SQLAlchemy
+    * Pydantic
 
 ### 4. Configure database
 
